@@ -3,11 +3,9 @@
 
 #include <iostream>
 
-#include <httplib.h>
+TEST_CASE("test serving of json graph"){
 
-TEST_CASE("test httplib serving of json graph"){
-
-  httplib::Server svr;
+  /*httplib::Server svr;
   
   svr.set_mount_point("/", "../public");
   svr.set_file_extension_and_mimetype_mapping("json", "application/vnd.jgf+json");
@@ -35,6 +33,6 @@ TEST_CASE("test httplib serving of json graph"){
     svr.stop();
   });
 
-  svr.listen("localhost", 8080);
+  svr.listen("localhost", 8080);*/
 
 }

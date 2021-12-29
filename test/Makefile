@@ -19,7 +19,7 @@ build/src/coroutines_test.o: CXXFLAGS= -DNDEBUG -O3 -pthread -std=c++2a -I../inc
 build/src/coroutines_test.o: src/coroutines_test.cpp 
 	$(CXX) $(CXXFLAGS) -c -o build/src/coroutines_test.o src/coroutines_test.cpp
 
-test: CXXFLAGS= -O3 -pthread -std=c++2a -I../include -I../src -I../cpp_modules/cpp-httplib -I../cpp_modules/openssl/openssl/include -I../cpp_modules/zlib/dist/include -I../cpp_modules/doctest  
+test: CXXFLAGS= -O3 -pthread -std=c++2a -I../include -I../src -I../cpp_modules/openssl/openssl/include -I../cpp_modules/zlib/dist/include -I../cpp_modules/doctest  
 test: LDFLAGS= 
 test: src/test.cpp
 	$(CXX) $(CXXFLAGS) -c -o build/src/test.o src/test.cpp
