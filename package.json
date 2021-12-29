@@ -1,0 +1,42 @@
+{
+  "name" : "sylvan-pod-server",
+  "version" : "1.0.0",
+  "description" : "C++ http server for pods",
+  "bugs" : {
+    "url" : "null"
+  },
+  "dependencies": {
+    "CLI11": "CLIUtils/CLI11",
+    "cxx-mime-types": "DataDriven-CAM/cxx-mime-types",
+    "cxx-vhost": "DataDriven-CAM/cxx-vhost",
+    "mime-db": "1.42.0",
+    "urlcpp": "rimmartin/urlcpp",
+    "mio": "mandreyel/mio",
+    "openssl" : "openssl/openssl#OpenSSL_1_1_1l",
+    "zlib": "madler/zlib"
+  },
+  "devDependencies" : {
+    "cypress": "^9.2.0",
+    "cpp-httplib" : "yhirose/cpp-httplib",
+    "cytoscape.js" : "cytoscape/cytoscape.js",
+    "WebCola" : "tgdwyer/WebCola",
+    "cytoscape.js-cola" : "cytoscape/cytoscape.js-cola",
+    "springy" : "dhotson/springy",
+    "cytoscape.js-springy" : "cytoscape/cytoscape.js-springy",
+    "doctest" : "onqtam/doctest",
+    "wait-on": "^5.2.0",
+    "antlr4": "antlr/antlr4"
+  },
+  "keywords" : [ ],
+  "license" : "MIT",
+  "main" : "./",
+  "private" : false,
+  "scripts" : {
+    "build" : " mkdir -p build/src/parsing && make -j 3 -f Makefile all && cd test && pwd && mkdir -p build/src/publishing/st && make -f Makefile all",
+    "clean" : "make clean",
+    "zlib" : "cd cpp_modules/zlib && cmake -DCMAKE_INSTALL_PREFIX=dist . && make install",
+    "ssl" : "cd cpp_modules/openssl && ./config shared --prefix=`pwd`/openssl --openssldir=`pwd`/openssl/openssl && make && make install",
+    "test" : "cnpm build && cd test && pwd && ./test --test-case='test httplib serving of json graph' ",
+    "zlib" : "cd cpp_modules/zlib && cmake -DCMAKE_INSTALL_PREFIX=dist . && make install"
+  }
+}
