@@ -17,7 +17,6 @@
   },
   "devDependencies" : {
     "cypress": "^9.2.0",
-    "cpp-httplib" : "yhirose/cpp-httplib",
     "cytoscape.js" : "cytoscape/cytoscape.js",
     "WebCola" : "tgdwyer/WebCola",
     "cytoscape.js-cola" : "cytoscape/cytoscape.js-cola",

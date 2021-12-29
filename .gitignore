@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+/cpp_modules
+/cpp_modules/*/
+/data/
+/public/
+main
