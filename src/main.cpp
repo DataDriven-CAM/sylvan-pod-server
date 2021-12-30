@@ -46,7 +46,8 @@ int main(int argc, char** argv){
         pmc::ldp<true> ldp;
         pmc::cors<true> cors{.Origin = "https://"+host+":"+std::to_string(port)};
         sylvanmats::vhost<true> vhost{.hostname = "*."+host,
-                               .handle = [&vhostDirectory, &mimetypes, &ldp](sylvanmats::http::Request *req, sylvanmats::http::Response *res){
+                               .handle = [&vhostDirectory, &mimetypes, &ldp, &cors](sylvanmats::http::Request *req, sylvanmats::http::Response *res){
+                                    cors(req, res);
                                     ldp(req, res);
                                     sylvanmats::RESTransfer transfer(vhostDirectory+"/"+req->clientHost+"/public");
                                     transfer(req, res);

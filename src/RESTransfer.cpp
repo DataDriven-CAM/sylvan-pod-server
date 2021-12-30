@@ -17,12 +17,12 @@ namespace sylvanmats{
                     std::ofstream ofs(path);
                     ofs<<req->content;
                     ofs.close();
-                        std::string reply(http_version+" 201 Created\n");
-                        SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 201 Created\n";
+                    res->conclude("");
                 }
                 else {
-                        std::string reply(http_version+" 200 OK\n");
-                        SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 200 OK\n";
+                    res->conclude("");
                 }
             }
             else if(req->getMethod().compare("POST")==0){
@@ -32,12 +32,12 @@ namespace sylvanmats{
                     std::ofstream ofs(path);
                     ofs<<req->content;
                     ofs.close();
-                        std::string reply(http_version+" 201 Created\n");
-                        SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 201 Created\n";
+                    res->conclude("");
                 }
                 else {
-                        std::string reply(http_version+" 200 OK\n");
-                        SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 200 OK\n";
+                    res->conclude("");
                 }
             }
             else if(req->getMethod().compare("GET")==0){
@@ -50,8 +50,8 @@ namespace sylvanmats{
                     res->conclude(content);
                 }
                 else {
-                    std::string reply(http_version+" 404 Not Found\n");
-                    SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 404 Not Found\n";
+                    res->conclude("");
                 }
             }
             else if(req->getMethod().compare("HEAD")==0){
@@ -71,12 +71,12 @@ namespace sylvanmats{
                 std::filesystem::path path = locationPath+request_target;
                 if(std::filesystem::exists(path)){
                     std::filesystem::remove(path);
-                    std::string reply(http_version+" 200 OK\n");
-                    SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 200 OK\n";
+                    res->conclude("");
                 }
                 else {
-                    std::string reply(http_version+" 404 Not Found\n");
-                    SSL_write(res->ssl, reply.c_str(), reply.size());
+                    res->status=http_version+" 404 Not Found\n";
+                    res->conclude("");
                 }
             }
         req->yield(false);

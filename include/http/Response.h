@@ -20,10 +20,12 @@ namespace sylvanmats::http{
                 reply+=std::get<1>(h);
                 reply+="\n";
             }
-            reply+="Content-Type: ";
-            reply+=contentType;
-            reply+="\n";
-            reply+="Content-Length: "+std::to_string(conclusion.size()+3)+"\n\r\n\r\n"+conclusion+"\n";
+            if(!conclusion.empty()){
+                reply+="Content-Type: ";
+                reply+=contentType;
+                reply+="\n";
+                reply+="Content-Length: "+std::to_string(conclusion.size()+3)+"\n\r\n\r\n"+conclusion+"\n";
+            }
             if(reply.size()>0){
                 int ret=SSL_write(ssl, reply.c_str(), reply.size());
                 bool abandon=false;
