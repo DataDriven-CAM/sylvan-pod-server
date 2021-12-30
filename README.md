@@ -22,8 +22,15 @@ cnpm build
 #building and running unit tests
 cnpm test
 
+#building and running cypress
+cnpm front-end
+
 
 ```
+
+## Configuration
+
+The config.toml file allows the vhost directory
 
 ## Contact
 

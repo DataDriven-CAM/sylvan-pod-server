@@ -35,4 +35,5 @@
 /cpp_modules/*/
 /data/
 /public/
+/cypress
 main

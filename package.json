@@ -36,7 +36,7 @@
     "zlib" : "cd cpp_modules/zlib && cmake -DCMAKE_INSTALL_PREFIX=dist . && make install",
     "ssl" : "cd cpp_modules/openssl && ./config shared --prefix=`pwd`/openssl --openssldir=`pwd`/openssl/openssl && make && make install",
     "test" : "cnpm build && cd test && pwd && ./test --test-case='test httplib serving of json graph' ",
-    "cypress": "./main & wait-on http://localhost:8080/index.html & cnpm run cypress open"
+    "front-end": "./main & wait-on tcp:8080 & cypress open",
     "zlib" : "cd cpp_modules/zlib && cmake -DCMAKE_INSTALL_PREFIX=dist . && make install"
   }
 }
