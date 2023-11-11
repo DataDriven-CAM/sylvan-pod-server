@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <filesystem>
+#include <ranges>
 
 #include "RESTransfer.h"
 
@@ -17,11 +18,11 @@ namespace sylvanmats{
                     std::ofstream ofs(path);
                     ofs<<req->content;
                     ofs.close();
-                    res->status=http_version+" 201 Created\n";
+                    res->status="201 Created\n";
                     res->conclude("");
                 }
                 else {
-                    res->status=http_version+" 200 OK\n";
+                    res->status="200 OK\n";
                     res->conclude("");
                 }
             }
@@ -32,25 +33,30 @@ namespace sylvanmats{
                     std::ofstream ofs(path);
                     ofs<<req->content;
                     ofs.close();
-                    res->status=http_version+" 201 Created\n";
+                    res->status="201 Created\n";
                     res->conclude("");
                 }
                 else {
-                    res->status=http_version+" 200 OK\n";
+                    res->status="200 OK\n";
                     res->conclude("");
                 }
             }
             else if(req->getMethod().compare("GET")==0){
                 std::filesystem::path path = locationPath+request_target;
-//                std::cout<<"GET "<<path<<std::endl;
-                if(std::filesystem::exists(path)){
+                std::cout<<"GET "<<path<<std::endl;
+                if(std::filesystem::exists(path) && std::filesystem::is_directory(path)){
+                    std::ranges::for_each(
+                        std::filesystem::directory_iterator{path},
+                        [](const auto& dir_entry) { std::cout << dir_entry << '\n'; });
+                }
+                else if(std::filesystem::exists(path)){
                     std::ifstream ifs(path);
                     std::string content=std::string((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
                     ifs.close();
                     res->conclude(content);
                 }
                 else {
-                    res->status=http_version+" 404 Not Found\n";
+                    res->status="404 Not Found\n";
                     res->conclude("");
                 }
             }
@@ -71,11 +77,11 @@ namespace sylvanmats{
                 std::filesystem::path path = locationPath+request_target;
                 if(std::filesystem::exists(path)){
                     std::filesystem::remove(path);
-                    res->status=http_version+" 200 OK\n";
+                    res->status="200 OK\n";
                     res->conclude("");
                 }
                 else {
-                    res->status=http_version+" 404 Not Found\n";
+                    res->status="404 Not Found\n";
                     res->conclude("");
                 }
             }
